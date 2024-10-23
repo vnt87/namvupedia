@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Llamapedia
+Comment=Your friendly llama-themed encyclopedia
+Exec=bash -c 'cd "$(dirname "%k")/" && pwd && streamlit run src/main.py; echo "Press Enter to close this window..."; read'
+Icon=icon.png
+Terminal=true
+Categories=Education;Reference; 

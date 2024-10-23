@@ -1,4 +1,6 @@
-# OLLAMA Wikipedia-like Interface
+# Llamapedia
+
+![Llamapedia](./res/screenshot.png)
 
 This Streamlit app provides a Wikipedia-like interface for querying an OLLAMA language model. Users can input their queries, and the app will generate informative responses using the configured OLLAMA model.
 
@@ -9,7 +11,7 @@ This Streamlit app provides a Wikipedia-like interface for querying an OLLAMA la
    pip install -r requirements.txt
    ```
 
-2. Configure the `.env` file with your OLLAMA API URL and model name.
+2. Configure the `.env` file with your OLLAMA API URL and model name (copy the `env.example` file to `.env` and modify it).
 
 3. Run the Streamlit app:
    ```
@@ -17,6 +19,10 @@ This Streamlit app provides a Wikipedia-like interface for querying an OLLAMA la
    ```
 
 4. Open your web browser and navigate to the URL provided by Streamlit (usually `http://localhost:8501`).
+
+## Tips
+
+- You can use the `llamapedia.desktop` or `llamapedia.bat` files to run the app. This provides a terminal window for the app and an easy way to launch it with a double-click.
 
 ## Usage
 

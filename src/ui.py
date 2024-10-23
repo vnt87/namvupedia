@@ -70,13 +70,13 @@ def render_wiki_interface():
     top_bar = st.container()
 
     with top_bar:
-        # Center the OLLAMA Wikipedia banner
+        # Center the Llamapedia banner
         st.markdown(
-            "<h1 style='text-align: center;'>OLLAMA Wikipedia</h1>",
+            "<h1 style='text-align: center;'>Llamapedia</h1>",
             unsafe_allow_html=True,
         )
         
-        user_query = st.text_input("", placeholder="Search OLLAMA Wikipedia")
+        user_query = st.text_input("", placeholder="Search Llamapedia")
 
         search_button = st.button("Search")
 
@@ -93,10 +93,10 @@ def render_wiki_interface():
 
 
 def display_intro():
-    st.title("Welcome to OLLAMA Wikipedia")
+    st.title("Welcome to Llamapedia")
     st.markdown(
         """
-    OLLAMA Wikipedia is an AI-powered encyclopedia that generates informative articles on a wide range of topics. 
+    Llamapedia is an AI-powered encyclopedia that generates informative articles on a wide range of topics. 
     To get started:
 
     1. Enter a topic or question in the search bar at the top.
