@@ -1,5 +1,7 @@
 # Llamapedia
 
+[![justforfunnoreally.dev badge](https://img.shields.io/badge/justforfunnoreally-dev-9ff)](https://justforfunnoreally.dev)
+
 ![Llamapedia](./res/screenshot.png)
 
 This Streamlit app provides a Wikipedia-like interface for querying an OLLAMA language model. Users can input their queries, and the app will generate informative responses using the configured OLLAMA model.
