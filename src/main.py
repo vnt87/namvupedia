@@ -3,7 +3,7 @@ from ui import render_wiki_interface, display_response
 from ollama_service import chat_with_ollama
 
 def main():
-    st.set_page_config(page_title="Llamapedia", page_icon="📚", layout="wide")
+    st.set_page_config(page_title="Namvupedia", page_icon="📚", layout="wide")
     
     user_query = render_wiki_interface()
     

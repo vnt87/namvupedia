@@ -4,18 +4,20 @@ import streamlit as st
 def set_wiki_style():
     st.markdown(
         """
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500&amp;display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
     .main {
-        background-color: #ffffff;
+        background-color: #F4EEEB;
         color: #202122;
-        font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Lato,Helvetica,Arial,sans-serif;
+        font-family: 'IBM Plex Sans', -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Lato,Helvetica,Arial,sans-serif;
     }
     .stApp {
         max-width: 1200px;
         margin: 0 auto;
     }
     h1 {
-        font-family: 'Linux Libertine','Georgia','Times',serif;
+        font-family: 'IBM Plex Serif', 'Linux Libertine','Georgia','Times',serif;
         color: #202122;
         border-bottom: 1px solid #a2a9b1;
         padding-bottom: 5px;
@@ -36,7 +38,7 @@ def set_wiki_style():
         color: #202122;
     }
     h2 {
-        font-family: 'Linux Libertine','Georgia','Times',serif;
+        font-family: 'IBM Plex Serif', 'Linux Libertine','Georgia','Times',serif;
         border-bottom: 1px solid #a2a9b1;
         padding-bottom: 5px;
         color: #202122;
@@ -55,7 +57,6 @@ def set_wiki_style():
     }
     span {
         color: #202122;
-        -webkit-text-stroke: 0.7px white;
     }
     </style>
     """,
@@ -70,13 +71,13 @@ def render_wiki_interface():
     top_bar = st.container()
 
     with top_bar:
-        # Center the Llamapedia banner
+        # Center the Namvupedia banner
         st.markdown(
-            "<h1 style='text-align: center;'>Llamapedia</h1>",
+            "<h1 style='text-align: center;'>Namvupedia</h1>",
             unsafe_allow_html=True,
         )
         
-        user_query = st.text_input("", placeholder="Search Llamapedia")
+        user_query = st.text_input("Search", placeholder="Search Namvupedia", label_visibility="hidden")
 
         search_button = st.button("Search")
 
@@ -93,10 +94,10 @@ def render_wiki_interface():
 
 
 def display_intro():
-    st.title("Welcome to Llamapedia")
+    st.title("Welcome to Namvupedia")
     st.markdown(
         """
-    Llamapedia is an AI-powered encyclopedia that generates informative articles on a wide range of topics. 
+    Namvupedia is an AI-powered encyclopedia that generates informative articles on a wide range of topics. 
     To get started:
 
     1. Enter a topic or question in the search bar at the top.
