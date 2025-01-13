@@ -12,8 +12,8 @@ def set_wiki_style():
         color: #202122;
         font-family: 'IBM Plex Sans', -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Lato,Helvetica,Arial,sans-serif;
     }
-    .stApp {    git remote set-url origin https://github.com/vnt87/namvupedia.git
-        max-width: 1200px;
+    .stApp {
+        max-width: 1366px;
         margin: 0 auto;
     }
     h1 {
@@ -23,12 +23,6 @@ def set_wiki_style():
         padding-bottom: 5px;
         margin-bottom: 20px;
     }
-    .search-container {
-        display: flex;
-        gap: 10px;
-        margin: 20px auto;
-        max-width: 800px;
-    }
     .stTextInput>div>div>input {
         background-color: white;
         color: #202122;
@@ -36,18 +30,6 @@ def set_wiki_style():
         border-radius: 4px;
         padding: 8px 12px;
         width: 100%;
-    }
-    .stButton>button {
-        background-color: #36c;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        padding: 8px 20px;
-        cursor: pointer;
-        transition: box-shadow 0.2s ease;
-    }
-    .stButton>button:hover {
-        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
     }
     p, li {
         font-size: 14px;
@@ -94,8 +76,33 @@ def render_wiki_interface():
             unsafe_allow_html=True,
         )
         
+        # Create search container with custom styles
+        st.markdown("""
+        <style>
+        div.stButton > button {
+            background-color: #1a365d;
+            color: #FFD700 !important;
+            border: none;
+            border-radius: 4px;
+            padding: 12px 24px;
+            width: 100%;
+            display: block;
+            margin: 0 auto;
+            text-align: center;
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+        div.stButton > button:hover {
+            background-color: #2c5282;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        </style>
+        """, unsafe_allow_html=True)
+        
         # Create search container
-        st.markdown('<div class="search-container">', unsafe_allow_html=True)
+        st.markdown('<div style="max-width: 800px; margin: 20px auto;">', unsafe_allow_html=True)
         user_query = st.text_input("Search", placeholder="Search Namvupedia", label_visibility="hidden")
         search_button = st.button("Search")
         st.markdown('</div>', unsafe_allow_html=True)
