@@ -12,7 +12,7 @@ def set_wiki_style():
         color: #202122;
         font-family: 'IBM Plex Sans', -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Lato,Helvetica,Arial,sans-serif;
     }
-    .stApp {
+    .stApp {    git remote set-url origin https://github.com/vnt87/namvupedia.git
         max-width: 1200px;
         margin: 0 auto;
     }
@@ -23,14 +23,31 @@ def set_wiki_style():
         padding-bottom: 5px;
         margin-bottom: 20px;
     }
+    .search-container {
+        display: flex;
+        gap: 10px;
+        margin: 20px auto;
+        max-width: 800px;
+    }
     .stTextInput>div>div>input {
-        width: 70%;
+        background-color: white;
+        color: #202122;
+        border: 1px solid #a2a9b1;
+        border-radius: 4px;
+        padding: 8px 12px;
+        width: 100%;
     }
     .stButton>button {
         background-color: #36c;
         color: white;
-        width: 20%;
-        margin-left: auto;
+        border: none;
+        border-radius: 4px;
+        padding: 8px 20px;
+        cursor: pointer;
+        transition: box-shadow 0.2s ease;
+    }
+    .stButton>button:hover {
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
     }
     p, li {
         font-size: 14px;
@@ -77,9 +94,11 @@ def render_wiki_interface():
             unsafe_allow_html=True,
         )
         
+        # Create search container
+        st.markdown('<div class="search-container">', unsafe_allow_html=True)
         user_query = st.text_input("Search", placeholder="Search Namvupedia", label_visibility="hidden")
-
         search_button = st.button("Search")
+        st.markdown('</div>', unsafe_allow_html=True)
 
     if search_button or (
         user_query and st.session_state.get("last_query") != user_query
