@@ -1,8 +1,8 @@
-# Llamapedia
+# Dr. Biết Tuốt
 
 [![justforfunnoreally.dev badge](https://img.shields.io/badge/justforfunnoreally-dev-9ff)](https://justforfunnoreally.dev)
 
-![Llamapedia](./res/screenshot.png)
+![Dr. Biết Tuốt](./res/screenshot.png)
 
 This Streamlit app provides a Wikipedia-like interface for querying an OLLAMA language model. Users can input their queries, and the app will generate informative responses using the configured OLLAMA model.
 
@@ -24,7 +24,7 @@ This Streamlit app provides a Wikipedia-like interface for querying an OLLAMA la
 
 ## Tips
 
-- You can use the `llamapedia.desktop` or `llamapedia.bat` files to run the app. This provides a terminal window for the app and an easy way to launch it with a double-click.
+- You can use the `Dr. Biết Tuốt.desktop` or `Dr. Biết Tuốt.bat` files to run the app. This provides a terminal window for the app and an easy way to launch it with a double-click.
 
 ## Usage
 

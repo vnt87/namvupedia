@@ -1,109 +1,134 @@
 import streamlit as st
 
+def init_session_state():
+    if 'dark_mode' not in st.session_state:
+        st.session_state.dark_mode = False
 
 def set_wiki_style():
-    st.markdown(
-        """
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500&amp;display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-    .main {
-        background-color: #F4EEEB;
-        color: #202122;
-        font-family: 'IBM Plex Sans', -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Lato,Helvetica,Arial,sans-serif;
+    dark = st.session_state.get('dark_mode', False)
+    
+    # Define theme colors
+    colors = {
+        'bg': "#1a1a1a" if dark else "#F4EEEB",
+        'text': "#E1E1E1" if dark else "#202122",
+        'border': "#4a4a4a" if dark else "#a2a9b1",
+        'input_bg': "#2d2d2d" if dark else "white",
+        'input_text': "#E1E1E1" if dark else "#202122",
+        'button_bg': "#4a4a4a" if dark else "#1a365d",
+        'button_text': "#FFFFFF" if dark else "#FFFFFF",
+        'section_bg': "#2d2d2d" if dark else "#f8f9fa"
     }
-    .stApp {
+
+    st.markdown(
+        f"""
+    <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+    .main {{
+        background-color: {colors['bg']};
+        color: {colors['text']};
+        font-family: 'Bai Jamjuree', -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Lato,Helvetica,Arial,sans-serif;
+    }}
+    .stApp {{
         max-width: 1366px;
         margin: 0 auto;
-    }
-    h1 {
-        font-family: 'IBM Plex Serif', 'Linux Libertine','Georgia','Times',serif;
-        color: #202122;
-        border-bottom: 1px solid #a2a9b1;
+    }}
+    h1, h2 {{
+        font-family: 'Bai Jamjuree', 'Linux Libertine','Georgia','Times',serif;
+        color: {colors['text']};
+        border-bottom: 1px solid {colors['border']};
         padding-bottom: 5px;
-        margin-bottom: 20px;
-    }
-    .stTextInput>div>div>input {
-        background-color: white;
-        color: #202122;
-        border: 1px solid #a2a9b1;
-        border-radius: 4px;
-        padding: 8px 12px;
-        width: 100%;
-    }
-    p, li {
-        font-size: 14px;
-        line-height: 1.6;
-        color: #202122;
-    }
-    h2 {
-        font-family: 'IBM Plex Serif', 'Linux Libertine','Georgia','Times',serif;
-        border-bottom: 1px solid #a2a9b1;
-        padding-bottom: 5px;
-        color: #202122;
-    }
-    .references {
-        background-color: #f8f9fa;
-        border: 1px solid #a2a9b1;
-        padding: 10px;
-        margin-top: 20px;
-    }
-    .categories {
-        background-color: #f8f9fa;
-        border: 1px solid #a2a9b1;
-        padding: 10px;
-        margin-top: 20px;
-    }
-    span {
-        color: #202122;
-    }
+    }}
+    .stTextInput>div>div>input {{
+        background-color: {colors['input_bg']};
+        color: {colors['input_text']};
+        border: 1px solid {colors['border']};
+    }}
+    .stTextInput>div>div>input::placeholder {{
+        color: {colors['border']};
+    }}
+    p, li, span {{
+        color: {colors['text']};
+    }}
+    .references, .categories {{
+        background-color: {colors['section_bg']};
+        border: 1px solid {colors['border']};
+    }}
+    div[data-testid="stToolbar"] {{
+        display: none;
+    }}
+    footer {{
+        visibility: hidden;
+    }}
+    footer:after {{
+        content:'Made with Streamlit • '; 
+        visibility: visible;
+        display: block;
+        color: {colors['text']};
+        padding: 5px;
+        text-align: center;
+    }}
+    div.stButton > button:not(.theme-toggle) {{
+        background-color: {colors['button_bg']} !important;
+        color: {colors['button_text']} !important;
+    }}
+    .theme-toggle {{
+        position: fixed !important;
+        bottom: 25px !important;
+        right: 60px !important;
+        background-color: transparent !important;
+        color: {colors['text']} !important;
+        border: 1px solid {colors['border']} !important;
+        padding: 0.25rem 0.75rem !important;
+        border-radius: 4px !important;
+    }}
     </style>
     """,
         unsafe_allow_html=True,
     )
 
-
 def render_wiki_interface():
+    init_session_state()
     set_wiki_style()
 
     # Create a container for the top bar
     top_bar = st.container()
 
     with top_bar:
-        # Center the Namvupedia banner
+        # Center the Dr. Biết Tuốt banner
         st.markdown(
-            "<h1 style='text-align: center;'>Namvupedia</h1>",
+            "<h1 style='text-align: center;'>Dr. Biết Tuốt</h1>",
             unsafe_allow_html=True,
         )
         
         # Create search container with custom styles
         st.markdown("""
         <style>
-        div.stButton > button {
-            background-color: #1a365d;
-            color: #FFD700 !important;
-            border: none;
-            border-radius: 4px;
-            padding: 12px 24px;
-            width: 100%;
-            display: block;
-            margin: 0 auto;
-            text-align: center;
-            font-weight: 500;
-            font-size: 14px;
-            transition: all 0.2s ease;
+        div.stButton > button:first-child {
+            background-color: #1a365d !important;
+            color: #FFED4A !important;
+            border: none !important;
+            border-radius: 4px !important;
+            padding: 12px 24px !important;
+            width: 100% !important;
+            max-width: 280px !important;
+            display: block !important;
+            margin: 0 auto !important;
+            text-align: center !important;
+            font-weight: 500 !important;
+            font-size: 14px !important;
+            transition: all 0.2s ease !important;
         }
-        div.stButton > button:hover {
-            background-color: #2c5282;
-            transform: translateY(-1px);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        div.stButton > button:first-child:hover {
+            background-color: #2c5282 !important;
+            transform: translateY(-1px) !important;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2) !important;
         }
         </style>
         """, unsafe_allow_html=True)
         
         # Create search container
         st.markdown('<div style="max-width: 800px; margin: 20px auto;">', unsafe_allow_html=True)
-        user_query = st.text_input("Search", placeholder="Search Namvupedia", label_visibility="hidden")
+        user_query = st.text_input("Search", placeholder="Search Dr. Biết Tuốt", label_visibility="hidden")
         search_button = st.button("Search")
         st.markdown('</div>', unsafe_allow_html=True)
 
@@ -116,23 +141,41 @@ def render_wiki_interface():
     if not user_query:
         display_intro()
 
+    # Add theme toggle button to footer
+    st.markdown(
+        f"""
+        <div style='position: fixed; bottom: 20px; width: 100%;'>
+            <button class="theme-toggle" onclick="window.Streamlit.setComponentValue(!{str(st.session_state.dark_mode).lower()})">
+                {"🌞 Light" if st.session_state.dark_mode else "🌒 Dark"}
+            </button>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+    # Handle theme toggle click
+    if st.session_state.get("widget_value") is not None:
+        st.session_state.dark_mode = st.session_state.widget_value
+        st.session_state.widget_value = None
+        st.experimental_rerun()
+
     return None
 
 
 def display_intro():
-    st.title("Welcome to Namvupedia")
+    st.title("Chào mừng đến với Dr. Biết Tuốt")
     st.markdown(
         """
-    Namvupedia is an AI-powered encyclopedia that generates informative articles on a wide range of topics. 
-    To get started:
+    Dr. Biết Tuốt là một bách khoa toàn thư được hỗ trợ bởi AI, tạo ra các bài viết thông tin về nhiều chủ đề khác nhau.
+    Để bắt đầu:
 
-    1. Enter a topic or question in the search bar at the top.
-    2. Click the "Search" button or press Enter.
-    3. Wait for the AI to generate a comprehensive article based on your query.
+    1. Nhập một chủ đề hoặc câu hỏi vào thanh tìm kiếm ở trên cùng.
+    2. Nhấn nút "Tìm kiếm" hoặc nhấn Enter.
+    3. Chờ AI tạo ra một bài viết toàn diện dựa trên truy vấn của bạn.
 
-    Please note that the information provided is generated by an AI model and should be verified with authoritative sources for critical use.
+    Xin lưu ý rằng thông tin được cung cấp được tạo ra bởi một mô hình AI và nên được xác minh với các nguồn có thẩm quyền cho các mục đích quan trọng.
 
-    Happy exploring!
+    Chúc bạn khám phá vui vẻ!
     """
     )
 
