@@ -21,19 +21,24 @@ def set_wiki_style():
 
     st.markdown(
         f"""
-    <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@400;500;600;700&amp;family=Crimson+Pro:wght@400;600&amp;display=swap" rel="stylesheet">
     <style>
     .main {{
         background-color: {colors['bg']};
         color: {colors['text']};
         font-family: 'Bai Jamjuree', -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Lato,Helvetica,Arial,sans-serif;
     }}
+    .query-title {{
+        font-family: 'Crimson Pro', serif;
+        text-align: center;
+        margin-bottom: 1em;
+    }}
     .stApp {{
         max-width: 1366px;
         margin: 0 auto;
     }}
     h1, h2 {{
-        font-family: 'Bai Jamjuree', 'Linux Libertine','Georgia','Times',serif;
+        font-family: 'Crimson Pro', serif;
         color: {colors['text']};
         border-bottom: 1px solid {colors['border']};
         padding-bottom: 5px;
@@ -103,7 +108,7 @@ def render_wiki_interface():
         # Create search container with custom styles
         st.markdown("""
         <style>
-        div.stButton > button:first-child {
+        div.stButton > button:first-child {{
             background-color: #1a365d !important;
             color: #FFED4A !important;
             border: none !important;
@@ -117,12 +122,12 @@ def render_wiki_interface():
             font-weight: 500 !important;
             font-size: 14px !important;
             transition: all 0.2s ease !important;
-        }
-        div.stButton > button:first-child:hover {
+        }}
+        div.stButton > button:first-child:hover {{
             background-color: #2c5282 !important;
             transform: translateY(-1px) !important;
             box-shadow: 0 2px 4px rgba(0,0,0,0.2) !important;
-        }
+        }}
         </style>
         """, unsafe_allow_html=True)
         
@@ -141,22 +146,11 @@ def render_wiki_interface():
     if not user_query:
         display_intro()
 
-    # Add theme toggle button to footer
-    st.markdown(
-        f"""
-        <div style='position: fixed; bottom: 20px; width: 100%;'>
-            <button class="theme-toggle" onclick="window.Streamlit.setComponentValue(!{str(st.session_state.dark_mode).lower()})">
-                {"🌞 Light" if st.session_state.dark_mode else "🌒 Dark"}
-            </button>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-
-    # Handle theme toggle click
-    if st.session_state.get("widget_value") is not None:
-        st.session_state.dark_mode = st.session_state.widget_value
-        st.session_state.widget_value = None
+    # Add theme toggle button using Streamlit's built-in button
+    if st.button(f"{'🌞 Light' if st.session_state.dark_mode else '🌒 Dark'} Mode", 
+                key="theme_toggle",
+                help="Toggle between light and dark mode"):
+        st.session_state.dark_mode = not st.session_state.dark_mode
         st.experimental_rerun()
 
     return None
@@ -181,18 +175,7 @@ def display_intro():
 
 
 def display_response(query, response):
-    st.title(query)
+    capitalized_query = f'"{query[0].upper() + query[1:]}"'
+    st.markdown(f'<h1 class="query-title">{capitalized_query}</h1>', unsafe_allow_html=True)
     st.markdown("---")
     st.markdown(response)
-
-    # Add a fake "References" section
-    st.markdown('<div class="references">', unsafe_allow_html=True)
-    st.markdown("## References")
-    st.markdown("1. OLLAMA Language Model (2023)")
-    st.markdown("2. AI-generated content based on user query")
-    st.markdown("</div>", unsafe_allow_html=True)
-
-    # Add a fake "Categories" section
-    st.markdown('<div class="categories">', unsafe_allow_html=True)
-    st.markdown("Categories: AI-generated content | OLLAMA | Encyclopedia articles")
-    st.markdown("</div>", unsafe_allow_html=True)
