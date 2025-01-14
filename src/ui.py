@@ -2,7 +2,7 @@ import streamlit as st
 
 def init_session_state():
     if 'dark_mode' not in st.session_state:
-        st.session_state.dark_mode = False
+        st.session_state.dark_mode = True
 
 def set_wiki_style():
     dark = st.session_state.get('dark_mode', False)
